@@ -1,3 +1,9 @@
+const {createInterface} = require("node:readline")
+const rl = createInterface({
+    input : process.stdin,
+    output : process.stdout
+})
+
 function convertTanggal(isiTgl){
     // buat dulu input menjadi array, dimana kita ambil datanya sebelum dipisah -
     const partKal = isiTgl.split('-')
@@ -5,6 +11,7 @@ function convertTanggal(isiTgl){
     //cek jika panjang arraynya setelah dipisah kurang dari 3 maka format salah
     if (partKal.length !== 3) {
         console.log("Format tanggal DD-MM-YYYY")
+        isiTanggal()
         return 
     }
     // lalu masukkan isian 3 indeks tadi masing masing ke dalam variabel
@@ -21,10 +28,16 @@ function convertTanggal(isiTgl){
     ) {
         //merubah tanggal sesuai format penanggalan indonesia
         console.log(tanggal.toLocaleDateString("id-ID"))
+        rl.close()
     } else {
        console.log("Tanggal Tidak Valid")
+       isiTanggal()
        return
     }
 }
-
-convertTanggal("24-04-2015")
+function isiTanggal(){
+    rl.question("Inputkan tgl: ", (isiTgl) => {
+        convertTanggal(isiTgl)
+    })
+} 
+isiTanggal()
