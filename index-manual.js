@@ -35,7 +35,7 @@ function convertTanggal(isiTgl){
        return
     }
 }
-function isiTanggal(){
+const isiTanggal = ()=>{
     rl.question("Inputkan tgl: ", (isiTgl) => {
         convertTanggal(isiTgl)
     })
