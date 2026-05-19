@@ -30,7 +30,7 @@ function convertTanggal(isiTgl){
         console.log(tanggal.toLocaleDateString("id-ID"))
         rl.close()
     } else {
-       console.log("Tanggal Tidak Valid")
+       console.log("Format Tanggal Salah")
        isiTanggal()
        return
     }
