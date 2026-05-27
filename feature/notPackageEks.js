@@ -5,12 +5,16 @@
  */
 
 exports.convertTanggal = (isiTgl) => {
+
+  if (typeof isiTgl !== "string"){
+    return false;
+  }
   // buat dulu input menjadi array, dimana kita ambil datanya sebelum dipisah -
   const partKal = isiTgl.split('-');
 
   //cek jika panjang arraynya setelah dipisah kurang dari 3 maka format salah
   if (partKal.length !== 3) {
-    console.log("Format tanggal DD-MM-YYYY");
+    console.error("Format tanggal DD-MM-YYYY");
     return false;
   }
   // lalu masukkan isian 3 indeks tadi masing masing ke dalam variabel
@@ -18,17 +22,21 @@ exports.convertTanggal = (isiTgl) => {
 
   //Buat variabel tanggal dari objek Date menggunakan data year, month-1(karena pada object Date bulan januari adalah 0), day
   const tanggal = new Date(year, month - 1, day);
-
+  
   // Verifikasi bahwa tahun, bulan, dan tanggal sesuai (mencegah 31-02-2015)
   if (
     tanggal.getDate() === day &&
         tanggal.getMonth() === month - 1 &&
         tanggal.getFullYear() === year
   ) {
+    const date = tanggal.getDate().toString().padStart(2,"0");
+    const months = (tanggal.getMonth()+1).toString().padStart(2,"0");
+    const years = tanggal.getFullYear().toString().padStart(2,"0");
+
     //merubah tanggal sesuai format penanggalan indonesia
-    return tanggal.toLocaleDateString("id-ID");
+    return `${date}/${months}/${years}`;
   } else {
-    console.log("Format Tanggal Salah");
+    console.error("Format Tanggal Salah");
     return false;
   }
 };
