@@ -15,7 +15,9 @@ exports.tanya = (text)=>{
     });
   });
 };
-
+/**
+ * close input
+ */
 exports.tutup = () => {
   console.clear;
   rl.close();
