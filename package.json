@@ -4,7 +4,7 @@
   "description": "program to convert date DD-MM-YYYY to format DD/MM/YYYY using the moment package and without external packages",
   "main": "index.js",
   "scripts": {
-    "test": "node test",
+    "test": "node --test",
     "test:coverage": "node --test --experimental-test-coverage",
     "start": "node index.js",
     "lint": "eslint ./*.js",

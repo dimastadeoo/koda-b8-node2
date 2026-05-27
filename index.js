@@ -1,26 +1,19 @@
-const moment = require("moment");
+const {convertTanggal} = require("./feature/momenPackage.js");
+const {tanya, tutup} = require('./feature/inputData.js');
 
-const {createInterface} = require("node:readline");
-const rl = createInterface({
-  input : process.stdin,
-  output : process.stdout
-});
-
-function convertTanggal(isiTgl){
-  const tgl = moment(isiTgl, 'DD-MM-YYYY', true);
-  if (!tgl.isValid()){
-    console.log("Format Tanggal Salah");
-    isiTanggal();
-    return;
+async function main(input, close) {
+  let inputData;
+  let result;
+  while(true){
+    inputData = await input("Inputkan tgl: ");
+    result = await convertTanggal(inputData);
+    console.log(typeof result);
+    if (result !== false){
+      break;
+    }
   }
-  console.log(tgl.format('DD/MM/YYYY'));
-  rl.close();
+  console.log("Konversi tanggal: ", result);
+  close();
 }
 
-
-function isiTanggal(){
-  rl.question("Inputkan tgl: ", (isiTgl) => {
-    convertTanggal(isiTgl);
-  });
-} 
-isiTanggal();
+main(tanya, tutup);
