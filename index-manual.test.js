@@ -4,7 +4,7 @@ const {convertTanggal} = require('./feature/notPackageEks.js');
 
 describe("convertTanggal", () => {
   it("return false must be param is not match of format DD-MM-YYYY", () => {
-    // assert.equal(convertTanggal(), false);
+    assert.equal(convertTanggal(), false);
     assert.equal(convertTanggal("a"), false);
     assert.equal(convertTanggal(23), false);
     assert.equal(convertTanggal(30032016), false);
